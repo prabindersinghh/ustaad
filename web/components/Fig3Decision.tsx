@@ -115,14 +115,10 @@ function NotRun() {
   return (
     <Panel className="mt-5">
       <div className="flex flex-col items-start gap-3">
-        <Pending label="stage images not generated yet" />
-        <p className="text-[14px] text-ash">
-          <span className="font-mono">verify.py</span> saves these stage images for one PASS and one
-          FAIL into <span className="font-mono">/demo/evidence/</span>. Generate them with:
-        </p>
-        <pre className="w-full overflow-x-auto rounded-lg border border-line bg-bone p-3 font-mono text-[12.5px] text-ink">
-          bash pipeline/run_all.sh
-        </pre>
+        <div className="flex flex-wrap gap-2"><span className="chip">Simulated scene</span><span className="chip">browser fallback</span></div>
+        <p className="text-[14px] text-ash">The decision chain is previewed in simulation mode until <span className="font-mono">verify.py</span> publishes real stage images.</p>
+        <div className="grid w-full grid-cols-2 gap-2 md:grid-cols-4">{STAGES.map((s,i)=><div key={s.key} className={`rounded-lg border p-3 ${i === 6 ? "border-fail/50 bg-fail/5" : "border-line bg-bone"}`}><div className="font-mono text-[11px] text-ash">0{i+1}</div><div className="mt-1 text-[13px] font-medium text-ink">{s.name}</div><div className="mt-1 font-mono text-[10px] text-ash">{s.fn.split(" → ")[0]}</div></div>)}</div>
+        <p className="text-[12px] text-ash">Run <span className="font-mono">bash pipeline/run_all.sh</span> on Linux to replace this preview with evidence images.</p>
       </div>
     </Panel>
   );
