@@ -14,9 +14,18 @@
 
 </div>
 
-USTAAD is a vision system for physical procedures. It learns a task from one
-expert demonstration and a short manual, then verifies each worker step with
-alignment, region comparison, and an auditable agent action.
+USTAAD is a factory vision assistant born from hands-on manufacturing work. Its
+creator personally executed **3,000+ garment manufacturing orders** and now
+builds software for a working paint manufacturer in Punjab. Across both
+settings, the same problem appears: changeovers, maintenance, and quality
+checks live as tacit knowledge in senior workers’ heads.
+
+USTAAD turns that knowledge into a reusable, machine-checkable procedure from
+**one expert demonstration**. It guides a new worker, verifies what physically
+happened, and produces an auditable trace for a supervisor.
+
+> **One-liner:** USTAAD captures one expert procedure and verifies every worker
+> step with explainable OpenCV vision and a human-safe agent loop.
 
 USTAAD learns a physical procedure from **one** expert video plus a short text
 manual, then watches a worker's video and verifies each step. An agent acts on
@@ -67,6 +76,34 @@ lab. The visual language and eased motion primitives use the open-source [Anatom
 For the complete offline OpenCV 5 replay, run `bash pipeline/run_all.sh` on
 Linux. The generated `/demo` artifacts automatically replace the browser
 fallbacks on the next page load.
+
+## The closed loop
+
+USTAAD runs **capture → guide → verify → log** using an ordinary phone,
+webcam, or fixed station camera:
+
+1. **Capture:** an expert performs the task once. USTAAD segments the recording
+   into stable steps and stores a reference keyframe, an ROI, and matching
+   feature descriptors for each step.
+2. **Guide and verify:** a new worker receives one instruction at a time. The
+   system waits for the action to settle, compares the result with the expert,
+   and decides whether to advance, correct, or ask a human.
+3. **Log:** every step produces timestamped evidence, a score, a decision, and
+   a structured trace for review.
+
+The agent tools are deliberately explicit:
+
+```text
+PASS   → log_evidence → next_step
+FAIL   → flag_error(region) → re-verify after correction
+UNSURE → request_human_approval
+```
+
+The OpenCV core combines temporal motion segmentation, ArUco registration,
+ORB + Lowe-ratio matching with RANSAC homography, CLAHE lighting
+normalisation, and SSIM inside the learned ROI. Processing is adaptively
+sampled around motion events so the system does not spend compute on every
+unchanged frame.
 
 ```mermaid
 flowchart LR

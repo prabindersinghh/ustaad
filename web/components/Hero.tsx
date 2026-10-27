@@ -38,9 +38,9 @@ export default function Hero() {
             Verify it every time.
           </h1>
           <p className="mt-5 max-w-xl text-[17px] leading-relaxed text-ash">
-            USTAAD turns a single expert demonstration and a short manual into vision-verified
-            steps, then an agent watches each new worker and checks every action — advancing on a
-            pass, flagging the exact region on a fail, and escalating to a human when unsure.
+            USTAAD turns one expert demonstration into a reusable, machine-checkable procedure for
+            changeovers, maintenance, and quality checks — guiding the next worker, verifying what
+            physically happened, and escalating when the vision system is unsure.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a

@@ -8,7 +8,7 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", displ
 export const metadata: Metadata = {
   title: "USTAAD — Learn a procedure once. Verify it every time.",
   description:
-    "USTAAD learns a physical procedure from one expert video and a short manual, then an agent watches a worker and verifies each step with OpenCV 5. PASS advances, FAIL flags the region, UNSURE escalates to a human.",
+    "USTAAD turns one expert demonstration into a machine-checkable procedure for factory changeovers, maintenance, and quality checks using OpenCV 5 and an auditable agent loop.",
   icons: { icon: "/ustaad-mark.svg" },
 };
 
