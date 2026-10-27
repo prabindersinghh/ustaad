@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "USTAAD — Learn a procedure once. Verify it every time.",
   description:
     "USTAAD learns a physical procedure from one expert video and a short manual, then an agent watches a worker and verifies each step with OpenCV 5. PASS advances, FAIL flags the region, UNSURE escalates to a human.",
+  icons: { icon: "/ustaad-mark.svg" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

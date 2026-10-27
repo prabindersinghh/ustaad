@@ -16,9 +16,7 @@ export default function Nav() {
     <nav className="sticky top-0 z-40 border-b border-line bg-paper/85 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-frame items-center justify-between px-5">
         <a href="#top" className="flex items-center gap-2.5 font-semibold tracking-[0.12em]">
-          <span className="relative block h-6 w-6 rounded-[6px] bg-yellow">
-            <span className="absolute inset-[6px] rounded-[2px] bg-ink" />
-          </span>
+          <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/ustaad-mark.svg`} alt="USTAAD" className="h-7 w-7 rounded-[7px]" />
           USTAAD
         </a>
         <ul className="hidden items-center gap-6 font-mono text-[12.5px] text-ash lg:flex">

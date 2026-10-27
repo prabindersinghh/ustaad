@@ -1,4 +1,22 @@
-# USTAAD — Learn a procedure once. Verify it every time.
+<div align="center">
+  <img src="web/public/ustaad-mark.svg" alt="USTAAD mark" width="88" />
+  <h1>USTAAD</h1>
+  <p><strong>Learn a procedure once. Verify it every time.</strong></p>
+  <p>OpenCV 5 · mathematical vision · deterministic agent trace · AWS-ready</p>
+</div>
+
+<div align="center">
+
+![Status](https://img.shields.io/badge/status-simulation--ready-FFC400?style=flat-square&labelColor=111418&color=FFC400)
+![OpenCV](https://img.shields.io/badge/OpenCV-5-2563EB?style=flat-square&labelColor=111418)
+![Next.js](https://img.shields.io/badge/Next.js-static_export-111418?style=flat-square)
+![Data](https://img.shields.io/badge/data-procedurally_generated-16A34A?style=flat-square&labelColor=111418)
+
+</div>
+
+USTAAD is a vision system for physical procedures. It learns a task from one
+expert demonstration and a short manual, then verifies each worker step with
+alignment, region comparison, and an auditable agent action.
 
 USTAAD learns a physical procedure from **one** expert video plus a short text
 manual, then watches a worker's video and verifies each step. An agent acts on
@@ -10,6 +28,11 @@ every vision result:
 
 Built for the **OpenCV AI Competition 2026** on **OpenCV 5** + **AWS**.
 
+> **Important:** the public demo is simulated. The control panel, worker hand,
+> camera noise, lighting drift, and failure case are procedurally generated.
+> Evaluation uses a procedurally generated scene; real-factory validation is
+> the next step.
+
 ## Start here: the landing page is the demo
 
 The project is intentionally demoable without a camera, factory footage, AWS
@@ -18,11 +41,25 @@ page: it immediately runs an honest browser simulation of the control cell,
 agent trace, OpenCV decision stages, and synthetic-data results state.
 
 ```bash
+# Windows PowerShell
+cd D:\opencvfactory\web
+npm install
+npm run dev
+# open http://localhost:3000
+```
+
+```bash
+# macOS / Linux
 cd web
 npm install
 npm run dev
 # open http://localhost:3000
 ```
+
+The first screen is already a complete simulation. Scroll below the hero for
+the before/after valve correction, mathematical model, agent trace, and the
+interactive five-step lab. In the lab, click **Load 5-step example**, switch
+to **Verify**, and press **Reset & run**.
 
 The yellow **Start simulation** control jumps directly into the interactive
 lab. The visual language is inspired by the open-source [Anatomy project](https://github.com/wheresryan22/anatomy): a light technical figure, precise parts, calm motion, live readouts, and one model driving the visual state. USTAAD’s figure is original and uses no copied assets.
@@ -48,6 +85,19 @@ flowchart LR
   O --> R[eval.py → results.json]
   O --> WEB[Next.js landing page /demo]
 ```
+
+## What the visitor sees
+
+1. **Instrumented replay** — an isometric control cell with camera markers,
+   ROI, scanline, stage counter, and live verdict.
+2. **Before → after simulation** — a wrong valve state, `FAIL`, region flag,
+   correction, and re-verification to `PASS`.
+3. **Mathematical model** — motion energy, homography, SSIM, and deterministic
+   thresholds shown beside the visual result.
+4. **Learn / verify / decision figures** — the pipeline explained as a visual
+   scientific narrative.
+5. **Live lab** — capture or load a procedure, drag an ROI, verify stable
+   moments, and approve/reject uncertain results in-browser.
 
 ## What's here
 
