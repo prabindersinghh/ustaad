@@ -24,8 +24,7 @@ USTAAD turns that knowledge into a reusable, machine-checkable procedure from
 **one expert demonstration**. It guides a new worker, verifies what physically
 happened, and produces an auditable trace for a supervisor.
 
-> **One-liner:** USTAAD captures one expert procedure and verifies every worker
-> step with explainable OpenCV vision and a human-safe agent loop.
+> **One-liner:** Learn a procedure once. Verify it every time.
 
 <p align="center">
   <img src="docs/ustaad-figure.svg" alt="Animated USTAAD inspection figure" width="900" />
