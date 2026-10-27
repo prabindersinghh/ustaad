@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 // Everything loads from /demo/, which run_all.sh populates from the pipeline's
 // out/ directory. Swapping in a new recording = re-run run_all.sh, no rebuild.
-export const DEMO = "/demo";
+export const DEMO = `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/demo`;
 
 export type Roi = [number, number, number, number];
 
