@@ -1,0 +1,22 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ustaad-api:latest
+    ports:
+      - "8000:8000"
+    environment:
+      # point at a bucket to have /process upload outputs; leave empty for local
+      S3_BUCKET: "${S3_BUCKET:-}"
+      AWS_REGION: "${AWS_REGION:-us-east-1}"
+      USTAAD_OUT: "/app/out"
+    volumes:
+      - ./out:/app/out          # persist generated outputs on the host
+    restart: unless-stopped
+    # On EC2, the awslogs driver ships container logs to CloudWatch (see infra/DEPLOY.md).
+    # logging:
+    #   driver: awslogs
+    #   options:
+    #     awslogs-region: us-east-1
+    #     awslogs-group: ustaad

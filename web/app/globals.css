@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --grid: #efede6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: #111418;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* thin hairline grid motif, used as a faint background on hero/figures */
+.gridfield {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.gridfield-fade {
+  -webkit-mask-image: radial-gradient(ellipse at 60% 30%, #000 0%, transparent 72%);
+  mask-image: radial-gradient(ellipse at 60% 30%, #000 0%, transparent 72%);
+}
+
+/* figure-style caption */
+.caption {
+  font-family: var(--font-mono), monospace;
+  font-size: 12.5px;
+  color: #5b626c;
+  letter-spacing: 0.01em;
+}
+.caption b {
+  color: #111418;
+  font-weight: 500;
+}
+
+.rule {
+  height: 1px;
+  background: #e6e4dc;
+}
+
+.hairline {
+  border: 1px solid #e6e4dc;
+}
+
+/* monospace data chips */
+.chip {
+  font-family: var(--font-mono), monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid #e6e4dc;
+  background: #fafaf7;
+  color: #5b626c;
+  white-space: nowrap;
+}
+
+.eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #5b626c;
+}
+.eyebrow .num {
+  color: #111418;
+  background: #FFC400;
+  padding: 1px 7px;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-weight: 600;
+}
+
+::selection {
+  background: #FFC400;
+  color: #111418;
+}
+
+/* trace stream */
+.trace-line {
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* scrollbars inside panels */
+.thin-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.thin-scroll::-webkit-scrollbar-thumb { background: #e6e4dc; border-radius: 8px; }
+.thin-scroll::-webkit-scrollbar-track { background: transparent; }
