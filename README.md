@@ -31,7 +31,8 @@ happened, and produces an auditable trace for a supervisor.
   <img src="docs/ustaad-figure.svg" alt="Animated USTAAD inspection figure" width="900" />
 </p>
 
-The animated figure is an original USTAAD illustration. Its calm isometric
+The animated figure is an original USTAAD explanation: it shows the full
+capture → align → compare → act path and a concrete valve correction. Its calm
 motion and eased inspection behavior are informed by the open-source
 [Anatomy](https://github.com/wheresryan22/anatomy) figure system; the adapted
 motion helper and attribution are included in the frontend source.
