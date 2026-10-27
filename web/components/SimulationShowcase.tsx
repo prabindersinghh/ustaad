@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Section, Caption, DecisionChip } from "./primitives";
+import { useEased } from "./anatomy-motion";
 
 const formulas = [
   { tag: "MOTION", formula: "Eₜ = ‖Gₜ − Gₜ₋₁‖₀ / |Ω|", note: "detect action → stable hold" },
@@ -30,5 +31,6 @@ export default function SimulationShowcase() {
 
 function StateCard({ label, tone, valve, detail }: { label: string; tone: "fail" | "pass"; valve: boolean; detail: string }) {
   const color = tone === "fail" ? "#DC2626" : "#16A34A";
+  const valveAngle = useEased(valve ? -48 : 0, 0.16);
   return <div className="rounded-2xl border border-line bg-white p-3 shadow-[0_14px_36px_rgba(17,20,24,.05)]"><div className="mb-3 flex items-center justify-between"><span className="font-mono text-[11px] tracking-[.08em] text-ash">{label}</span><DecisionChip d={tone === "fail" ? "FAIL" : "PASS"}>{tone === "fail" ? "FAIL" : "PASS"}</DecisionChip></div><div className="relative overflow-hidden rounded-xl border border-[#d8d9d4] bg-[#30383e] p-4"><div className="absolute inset-0 opacity-20 gridfield"/><div className="relative mx-auto h-40 max-w-[350px] rounded-lg border-2 border-[#14191d] bg-gradient-to-br from-[#55616a] to-[#20262b] shadow-[0_16px_26px_rgba(0,0,0,.25)]"><div className="absolute left-1/2 top-5 h-12 w-24 -translate-x-1/2 rounded border border-white/50 bg-[#11171b] p-2"><div className="h-1 rounded bg-yellow/80"/><div className="mt-2 h-1 w-2/3 rounded bg-blue-300/60"/></div><div className="absolute bottom-7 left-1/2 h-2 w-24 -translate-x-1/2 rounded bg-black/80"><motion.div animate={{rotate:valve?-48:0}} className="absolute left-1/2 top-1/2 h-2 w-16 origin-left -translate-y-1/2 rounded" style={{background:color}}/></div><div className="absolute bottom-4 left-1/2 -translate-x-1/2 font-mono text-[9px] text-white/65">VALVE ROI</div><motion.div animate={{opacity:valve?1:.35}} className="absolute right-5 top-7 h-5 w-5 rounded-full" style={{background:color}}/></div><div className="relative mt-3 flex justify-between font-mono text-[10px] text-white/65"><span>CAM-01</span><span>SSIM {valve?"0.91":"0.31"}</span></div></div><p className="mt-3 text-[12.5px] leading-relaxed text-ash">{detail}</p></div>;
 }

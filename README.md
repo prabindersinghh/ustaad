@@ -62,7 +62,7 @@ interactive five-step lab. In the lab, click **Load 5-step example**, switch
 to **Verify**, and press **Reset & run**.
 
 The yellow **Start simulation** control jumps directly into the interactive
-lab. The visual language is inspired by the open-source [Anatomy project](https://github.com/wheresryan22/anatomy): a light technical figure, precise parts, calm motion, live readouts, and one model driving the visual state. USTAAD’s figure is original and uses no copied assets.
+lab. The visual language and eased motion primitives use the open-source [Anatomy project](https://github.com/wheresryan22/anatomy) as a credited reference. USTAAD’s control-cell figure is original; the adapted motion helper is retained under the Anatomy MIT license.
 
 For the complete offline OpenCV 5 replay, run `bash pipeline/run_all.sh` on
 Linux. The generated `/demo` artifacts automatically replace the browser
