@@ -170,6 +170,7 @@ export default function Fig4Simulation() {
           ↻ replay
         </button>
         <span className="chip">simulation {running ? "· running" : "· done"}</span>
+        <span className="chip border-yellow/60 bg-yellow/10 text-ink">Anatomy motion · eased figure</span>
         <span className="font-mono text-[11px] text-ash">{phaseLabel}</span>
       </div>
 
@@ -187,7 +188,10 @@ export default function Fig4Simulation() {
         </Panel>
 
         <Panel>
-          <div className="caption mb-3"><b>Decisions</b></div>
+          <div className="caption mb-3 flex items-center justify-between"><b>Decisions</b><span className="font-mono text-[10px] text-ash">PERCEIVE → DECIDE → ACT</span></div>
+          <div className="mb-4 grid grid-cols-4 gap-1.5 font-mono text-[10px]">
+            {["move", "perform", "hold", "verify"].map((s, i) => <div key={s} className={`rounded border px-2 py-2 text-center ${phaseLabel.includes(s) || (i === 3 && phaseLabel.includes("verifying")) ? "border-yellow bg-yellow/15 text-ink" : "border-line bg-bone text-ash"}`}><div className="text-[9px] text-ash">0{i + 1}</div>{s}</div>)}
+          </div>
           <ul className="space-y-1.5">
             {STEP_NAMES.map((name, i) => {
               const last = [...decisions].reverse().find((d) => d.step === i);
