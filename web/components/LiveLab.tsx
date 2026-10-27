@@ -171,6 +171,30 @@ export default function LiveLab() {
     log(`capture → keyframe #${steps.length + 1} stored · roi=${rec.roi.w}×${rec.roi.h}`);
   };
 
+  const loadDemo = () => {
+    const vx = viewRef.current!.getContext("2d", { willReadFrequently: true })!;
+    const demoRois: Roi[] = [
+      { x: 48, y: 42, w: 42, h: 68 }, { x: 190, y: 48, w: 72, h: 70 },
+      { x: 112, y: 136, w: 138, h: 62 }, { x: 112, y: 42, w: 42, h: 68 },
+      { x: 58, y: 136, w: 58, h: 56 },
+    ];
+    const targets: [number, number][] = [[75, 80], [228, 82], [180, 165], [147, 80], [84, 160]];
+    const sim = newState();
+    const next: StepRec[] = [];
+    targets.forEach((target, i) => {
+      simClick(sim, target[0], target[1]);
+      drawSim(vx, sim, performance.now());
+      const g = toGray(vx.getImageData(0, 0, W, H));
+      const th = document.createElement("canvas"); th.width = 104; th.height = 78;
+      th.getContext("2d")!.drawImage(viewRef.current!, 0, 0, 104, 78);
+      next.push({ name: ["Raise power switch S1", "Set speed dial to 2", "Open feed valve", "Engage interlock S3", "Confirm READY lamp"][i], gray: g, roi: demoRois[i], thumb: th.toDataURL("image/jpeg", 0.7), status: null });
+    });
+    e.current.sim = newState(); e.current.roi = { ...demoRois[0] };
+    setSteps(next); setTrace([]); setCurStep(0); setMode("capture"); e.current.mode = "capture";
+    log("demo.load → 5-step simulated procedure ready");
+    log("next → switch to Verify, then press Reset & run");
+  };
+
   const startVerify = () => {
     const eng = e.current;
     eng.cur = 0; setCurStep(0); eng.awaiting = false; setAwaiting(false);
@@ -262,7 +286,7 @@ export default function LiveLab() {
               <div className="flex-1" />
               <button onClick={reset} className="rounded-lg border border-line bg-paper px-3 py-2 text-[13px] text-ash hover:text-ink">Reset</button>
               {mode === "capture" ? (
-                <button onClick={capture} className="rounded-lg bg-ink px-3.5 py-2 text-[13px] font-semibold text-paper hover:bg-ink/85">Capture step</button>
+                <>{steps.length === 0 && <button onClick={loadDemo} className="rounded-lg border border-yellow/70 bg-yellow/15 px-3.5 py-2 text-[13px] font-semibold text-ink hover:bg-yellow/25">Load 5-step example</button>}<button onClick={capture} className="rounded-lg bg-ink px-3.5 py-2 text-[13px] font-semibold text-paper hover:bg-ink/85">Capture step</button></>
               ) : (
                 <button onClick={startVerify} className="rounded-lg bg-ink px-3.5 py-2 text-[13px] font-semibold text-paper hover:bg-ink/85">{src === "sim" ? "Reset & run" : "Restart run"}</button>
               )}
@@ -278,10 +302,10 @@ export default function LiveLab() {
         <div className="space-y-4">
           <Panel>
             <div className="caption mb-3 flex items-center justify-between">
-              <b>Procedure</b><span>{steps.length} step{steps.length === 1 ? "" : "s"}</span>
+              <b>Procedure</b><span>{steps.length ? "expert reference" : "start here"}</span>
             </div>
             <ul className="thin-scroll max-h-[200px] space-y-2 overflow-auto">
-              {steps.length === 0 && <li className="caption">No steps captured yet.</li>}
+              {steps.length === 0 && <li className="rounded-lg border border-yellow/40 bg-yellow/10 p-3 text-[12.5px] leading-relaxed text-ash"><b className="text-ink">Fast path:</b> load the 5-step example, switch to Verify, then watch the agent inspect each stable moment.</li>}
               {steps.map((s, i) => (
                 <li key={i} className={`flex items-center gap-2.5 rounded-lg border px-2 py-1.5 ${mode === "verify" && i === curStep ? "border-yellow/70" : "border-line"} bg-bone`}>
                   <img src={s.thumb} alt="" className="h-9 w-12 rounded object-cover" />

@@ -50,6 +50,7 @@ export default function Fig4Simulation() {
   const [runId, setRunId] = useState(0);
   const [decisions, setDecisions] = useState<{ step: number; d: Decision; score: number; region?: string }[]>([]);
   const [running, setRunning] = useState(true);
+  const [phaseLabel, setPhaseLabel] = useState("initialising simulated procedure");
   const engine = useRef<any>({});
 
   // run / re-run whenever the mistake toggle flips
@@ -114,14 +115,17 @@ export default function Fig4Simulation() {
       const p = Math.min(1, (now - eng.phaseStart) / b.dur);
 
       if (b.t === "move") {
+        setPhaseLabel(`step ${Math.min(5, Math.floor(eng.bi / 4) + 1)} · moving to control`);
         eng.hand = {
           x: eng.from.x + (b.to[0] - eng.from.x) * easeInOut(p),
           y: eng.from.y + (b.to[1] - eng.from.y) * easeInOut(p),
         };
       } else if (b.t === "click" && p >= 1 && !eng._clicked) {
+        setPhaseLabel("performing action");
         b.apply(eng.state);
         eng._clicked = true;
       } else if (b.t === "verify" && p >= 1 && !eng._verified) {
+        setPhaseLabel("stable hold · verifying ROI with SSIM");
         runVerify(wx, eng, exp, b.step, setDecisions);
         eng._verified = true;
       }
@@ -166,6 +170,7 @@ export default function Fig4Simulation() {
           ↻ replay
         </button>
         <span className="chip">simulation {running ? "· running" : "· done"}</span>
+        <span className="font-mono text-[11px] text-ash">{phaseLabel}</span>
       </div>
 
       <div className="mt-5 grid gap-5 lg:grid-cols-[1.3fr_1fr]">
