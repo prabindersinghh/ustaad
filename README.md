@@ -27,6 +27,15 @@ happened, and produces an auditable trace for a supervisor.
 > **One-liner:** USTAAD captures one expert procedure and verifies every worker
 > step with explainable OpenCV vision and a human-safe agent loop.
 
+<p align="center">
+  <img src="docs/ustaad-figure.svg" alt="Animated USTAAD inspection figure" width="900" />
+</p>
+
+The animated figure is an original USTAAD illustration. Its calm isometric
+motion and eased inspection behavior are informed by the open-source
+[Anatomy](https://github.com/wheresryan22/anatomy) figure system; the adapted
+motion helper and attribution are included in the frontend source.
+
 USTAAD learns a physical procedure from **one** expert video plus a short text
 manual, then watches a worker's video and verifies each step. An agent acts on
 every vision result:

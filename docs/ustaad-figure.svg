@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">USTAAD animated inspection figure</title>
+  <desc id="desc">An isometric control cell with a moving inspection pulse and verification signal.</desc>
+  <!-- Original USTAAD artwork. Motion timing follows the calm, model-driven
+       figure approach of Anatomy: https://github.com/wheresryan22/anatomy -->
+  <defs>
+    <linearGradient id="paper" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#fafaf7"/></linearGradient>
+    <linearGradient id="top" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#59656d"/><stop offset="1" stop-color="#293138"/></linearGradient>
+    <linearGradient id="side" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#252c31"/><stop offset="1" stop-color="#111418"/></linearGradient>
+    <filter id="shadow"><feGaussianBlur stdDeviation="12"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#7b8389"/></marker>
+  </defs>
+  <rect width="1200" height="420" rx="22" fill="url(#paper)"/>
+  <g opacity=".38" stroke="#efede6"><path d="M0 70h1200M0 140h1200M0 210h1200M0 280h1200M0 350h1200"/><path d="M70 0v420M140 0v420M210 0v420M280 0v420M350 0v420M420 0v420M490 0v420M560 0v420M630 0v420M700 0v420M770 0v420M840 0v420M910 0v420M980 0v420M1050 0v420M1120 0v420"/></g>
+  <text x="48" y="54" font-family="monospace" font-size="13" letter-spacing="2" fill="#5b626c">USTAAD / INSTRUMENTED PROCEDURE REPLAY</text>
+  <rect x="970" y="30" width="180" height="30" rx="15" fill="#fff" stroke="#16A34A"/><circle cx="991" cy="45" r="5" fill="#16A34A"><animate attributeName="opacity" values="1;.35;1" dur="1.6s" repeatCount="indefinite"/></circle><text x="1006" y="50" font-family="monospace" font-size="12" fill="#111418">PASS / STEP 03</text>
+  <ellipse cx="566" cy="352" rx="280" ry="22" fill="#111418" opacity=".15" filter="url(#shadow)"/>
+  <path d="M260 116 730 82 850 158 380 195Z" fill="url(#top)" stroke="#111418" stroke-width="2"/>
+  <path d="M380 195 850 158 850 312 380 354Z" fill="url(#side)" stroke="#111418" stroke-width="2"/>
+  <path d="M260 116 380 195 380 354 260 278Z" fill="#3b464d" stroke="#111418" stroke-width="2"/>
+  <g fill="none" stroke="#FFC400" stroke-width="3"><rect x="282" y="132" width="42" height="36" transform="skewY(14)"/><rect x="758" y="100" width="42" height="36" transform="skewY(-5)"/><rect x="282" y="270" width="42" height="36" transform="skewY(14)"/><rect x="758" y="250" width="42" height="36" transform="skewY(-5)"/></g>
+  <g transform="translate(488 150) skewY(-5)"><rect width="170" height="84" rx="7" fill="#11171b" stroke="#cbd0d2" stroke-width="2"/><path d="M20 57 55 41 87 48 137 20" fill="none" stroke="#FFC400" stroke-width="4"/><circle cx="141" cy="18" r="5" fill="#16A34A"/><text x="20" y="75" font-family="monospace" font-size="11" fill="#cbd0d2">SSIM / LIVE TRACE</text></g>
+  <g transform="translate(455 274)"><circle r="35" fill="#12171b" stroke="#cbd0d2" stroke-width="4"/><circle r="25" fill="#59636a"/><path d="M0 0 17 -16" stroke="#FFC400" stroke-width="6" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" values="-25;25;-25" dur="3s" repeatCount="indefinite"/></path></g>
+  <g transform="translate(628 280)"><circle r="25" fill="#16A34A" stroke="#e5eee6" stroke-width="4"/><text x="0" y="4" text-anchor="middle" font-family="monospace" font-size="9" fill="#fff">READY</text></g>
+  <g transform="translate(532 303)"><rect x="-72" y="-5" width="150" height="10" rx="5" fill="#0d1114"/><rect x="-4" y="-5" width="70" height="10" rx="5" fill="#DC2626"><animate attributeName="fill" values="#DC2626;#16A34A;#DC2626" dur="4s" repeatCount="indefinite"/></rect></g>
+  <path d="M360 92H870" stroke="#DC2626" stroke-width="2" stroke-dasharray="8 9" marker-end="url(#arrow)"><animate attributeName="stroke" values="#DC2626;#16A34A;#DC2626" dur="4s" repeatCount="indefinite"/></path>
+  <circle r="8" fill="#FFC400"><animateMotion path="M360 92H870" dur="3.5s" repeatCount="indefinite"/></circle>
+  <g font-family="monospace" font-size="12" fill="#5b626c"><text x="260" y="393">ArUco / H</text><text x="500" y="393">ROI / valve</text><text x="760" y="393">CLAHE → SSIM → agent</text></g>
+</svg>
