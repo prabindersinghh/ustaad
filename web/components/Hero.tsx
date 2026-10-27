@@ -58,16 +58,47 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-line bg-paper/70 p-5 backdrop-blur-sm">
+        <div className="hero-figure rounded-2xl border border-line bg-white/90 p-4 shadow-[0_24px_70px_rgba(17,20,24,0.08)] backdrop-blur-sm md:p-5">
           <div className="mb-3 flex items-center justify-between">
-            <span className="caption"><b>The loop</b> — perceive · decide · act</span>
+            <span className="caption"><b>Fig. 0 — Instrumented replay</b> · synthetic control cell</span>
             <DecisionChip d={CYCLE[dec]} />
           </div>
-          <LoopDiagram active={active} dec={CYCLE[dec]} />
+          <ControlCell active={active} dec={CYCLE[dec]} />
+          <div className="mt-3 grid grid-cols-3 gap-2 border-t border-line pt-3 font-mono text-[10px] text-ash">
+            <span><b className="text-ink">10 fps</b><br/>sampling</span><span><b className="text-ink">0.78</b><br/>τ pass</span><span><b className="text-ink">ArUco</b><br/>registration</span>
+          </div>
         </div>
       </div>
     </header>
   );
+}
+
+function ControlCell({ active, dec }: { active: number; dec: Decision }) {
+  const decColor = dec === "PASS" ? "#16A34A" : dec === "FAIL" ? "#DC2626" : "#FFC400";
+  return <div className="relative overflow-hidden rounded-xl border border-[#d9d7cf] bg-[#f8f8f5] p-2">
+    <div className="absolute inset-0 opacity-50 gridfield" />
+    <svg viewBox="0 0 560 330" className="relative w-full" role="img" aria-label="Animated isometric control panel simulation">
+      <defs>
+        <linearGradient id="cellTop" x1="0" x2="1" y1="0" y2="1"><stop stopColor="#59636a"/><stop offset="1" stopColor="#293138"/></linearGradient>
+        <linearGradient id="cellSide" x1="0" x2="0" y1="0" y2="1"><stop stopColor="#20272c"/><stop offset="1" stopColor="#111418"/></linearGradient>
+        <filter id="soft"><feGaussianBlur stdDeviation="7"/></filter>
+        <marker id="arrowFigure" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7a8086"/></marker>
+      </defs>
+      <ellipse cx="280" cy="286" rx="190" ry="22" fill="#111418" opacity=".13" filter="url(#soft)"/>
+      <path d="M91 72L420 49L492 102L163 130Z" fill="url(#cellTop)" stroke="#111418" strokeWidth="1.5"/>
+      <path d="M163 130L492 102L492 232L163 267Z" fill="url(#cellSide)" stroke="#111418" strokeWidth="1.5"/>
+      <path d="M91 72L163 130L163 267L91 207Z" fill="#394248" stroke="#111418" strokeWidth="1.5"/>
+      {[0,1,2,3].map((n)=><g key={n}><rect x={n%2?420:105} y={n>1?180:63} width="32" height="32" fill="#101418" stroke="#FFC400" strokeWidth="2" transform={n%2?"skewY(-5)":"skewY(10)"}/><circle cx={n%2?436:121} cy={n>1?195:79} r="8" fill="none" stroke="#FFC400" opacity=".8"/></g>)}
+      <g transform="translate(225 125) skewY(-5)"><rect width="116" height="64" rx="5" fill="#151b1f" stroke="#a9b1b7"/><rect x="9" y="9" width="98" height="38" fill="#101418"/><path d="M17 37L42 29L62 33L88 17" stroke="#FFC400" strokeWidth="2" fill="none"/><circle cx="91" cy="18" r="3" fill="#16A34A"/><text x="14" y="58" fill="#cdd2d6" fontSize="8" fontFamily="monospace">SSIM / STREAM</text></g>
+      <g transform="translate(190 205)"><circle cx="0" cy="0" r="28" fill="#12171b" stroke="#c4c9cb" strokeWidth="3"/><circle cx="0" cy="0" r="18" fill="#59636a"/><motion.line x1="0" y1="0" x2="12" y2="-12" stroke="#FFC400" strokeWidth="4" animate={{rotate:[-30,30,-30]}} transition={{duration:3,repeat:Infinity}}/></g>
+      <g transform="translate(330 215)"><circle cx="0" cy="0" r="21" fill={dec === "PASS" ? "#16A34A" : "#313d37"} stroke="#d8ded8" strokeWidth="3"/><text x="0" y="4" textAnchor="middle" fill="white" fontSize="8" fontFamily="monospace">READY</text></g>
+      <motion.ellipse cx="310" cy="185" rx="42" ry="22" fill="#111418" opacity=".72" animate={{cx:[190,315,330,190],cy:[240,170,205,240]}} transition={{duration:5,repeat:Infinity,ease:"easeInOut"}}/>
+      <motion.path d="M92 52L470 52" stroke={decColor} strokeWidth="1.5" strokeDasharray="5 5" animate={{x:[-20,20,-20]}} transition={{duration:2,repeat:Infinity}} markerEnd="url(#arrowFigure)"/>
+      <text x="102" y="306" fill="#5b626c" fontSize="10" fontFamily="monospace">CAM-01</text><text x="407" y="306" fill="#5b626c" fontSize="10" fontFamily="monospace">ROI / VALVE</text>
+      <g transform="translate(402 18)"><rect width="118" height="25" rx="12" fill="#fff" stroke={decColor}/><circle cx="14" cy="12" r="4" fill={decColor}/><text x="25" y="16" fill="#111418" fontSize="10" fontFamily="monospace">LIVE SIMULATION</text></g>
+    </svg>
+    <div className="relative mt-1 flex items-center justify-between px-2 font-mono text-[10px] text-ash"><span>H = ArUco homography</span><span className="text-ink">stage {active + 1}/5</span></div>
+  </div>;
 }
 
 function LoopDiagram({ active, dec }: { active: number; dec: Decision }) {

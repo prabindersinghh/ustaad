@@ -10,6 +10,27 @@ every vision result:
 
 Built for the **OpenCV AI Competition 2026** on **OpenCV 5** + **AWS**.
 
+## Start here: the landing page is the demo
+
+The project is intentionally demoable without a camera, factory footage, AWS
+credentials, or generated video files. Start the web app and open the landing
+page: it immediately runs an honest browser simulation of the control cell,
+agent trace, OpenCV decision stages, and synthetic-data results state.
+
+```bash
+cd web
+npm install
+npm run dev
+# open http://localhost:3000
+```
+
+The yellow **Start simulation** control jumps directly into the interactive
+lab. The visual language is inspired by the open-source [Anatomy project](https://github.com/wheresryan22/anatomy): a light technical figure, precise parts, calm motion, live readouts, and one model driving the visual state. USTAAD’s figure is original and uses no copied assets.
+
+For the complete offline OpenCV 5 replay, run `bash pipeline/run_all.sh` on
+Linux. The generated `/demo` artifacts automatically replace the browser
+fallbacks on the next page load.
+
 ```mermaid
 flowchart LR
   E[expert.mp4 + manual.txt] --> L[learn.py<br/>segment · keyframes · ROI]

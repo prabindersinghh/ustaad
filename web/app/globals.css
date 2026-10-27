@@ -17,6 +17,12 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+.hero-figure {
+  background-image: radial-gradient(circle at 75% 15%, rgba(255,196,0,.11), transparent 34%), linear-gradient(180deg, rgba(255,255,255,.98), rgba(250,250,247,.96));
+}
+
+.hero-figure svg { filter: drop-shadow(0 14px 18px rgba(17,20,24,.06)); }
+
 /* thin hairline grid motif, used as a faint background on hero/figures */
 .gridfield {
   background-image:

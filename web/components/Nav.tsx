@@ -31,9 +31,9 @@ export default function Nav() {
         </ul>
         <a
           href="#lab"
-          className="rounded-lg bg-ink px-3.5 py-2 text-[13px] font-semibold text-paper transition-colors hover:bg-ink/85"
+          className="rounded-lg bg-yellow px-3.5 py-2 text-[13px] font-semibold text-ink transition-all hover:-translate-y-0.5 hover:shadow-[0_6px_18px_rgba(255,196,0,.35)]"
         >
-          Try live
+          Start simulation
         </a>
       </div>
     </nav>
