@@ -1,6 +1,7 @@
 "use client";
 
 const LINKS = [
+  ["#overview", "Overview"],
   ["#learn", "Learn"],
   ["#verify", "Verify"],
   ["#decision", "Decision"],

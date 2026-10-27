@@ -1,5 +1,6 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
+import SimulationShowcase from "@/components/SimulationShowcase";
 import Fig1Learn from "@/components/Fig1Learn";
 import Fig2Verify from "@/components/Fig2Verify";
 import Fig3Decision from "@/components/Fig3Decision";
@@ -14,6 +15,7 @@ export default function Home() {
     <main>
       <Nav />
       <Hero />
+      <SimulationShowcase />
       <Fig1Learn />
       <Fig2Verify />
       <Fig3Decision />
