@@ -30,10 +30,10 @@ export default function Results() {
       {loaded && !data ? (
         <Panel className="mt-8">
           <div className="flex flex-col items-start gap-3">
-            <Pending label="results.json not generated yet" />
-            <pre className="w-full overflow-x-auto rounded-lg border border-line bg-bone p-3 font-mono text-[12.5px] text-ink">
-              bash pipeline/run_all.sh
-            </pre>
+            <div className="flex flex-wrap gap-2"><span className="chip">synthetic data</span><span className="chip">browser fallback</span></div>
+            <p className="text-[14px] text-ash">The page is running in simulation mode; no evaluation numbers are invented before the pipeline publishes results.</p>
+            <div className="grid w-full grid-cols-2 gap-3 md:grid-cols-4">{["recall","false alarms","precision","latency"].map((x)=><div key={x} className="rounded-lg border border-line bg-bone p-3"><div className="text-[28px] text-ash">—</div><div className="text-[12px] text-ash">{x}</div></div>)}</div>
+            <p className="text-[12px] text-ash">Run <span className="font-mono">bash pipeline/run_all.sh</span> on Linux to replace placeholders with measured synthetic results.</p>
           </div>
         </Panel>
       ) : (

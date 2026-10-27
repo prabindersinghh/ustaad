@@ -193,14 +193,10 @@ function NotRun() {
   return (
     <Panel className="mt-8">
       <div className="flex flex-col items-start gap-3">
-        <Pending label="session not generated yet" />
-        <p className="text-[14px] text-ash">
-          This figure renders from <span className="font-mono">/demo/session.json</span> and the
-          annotated video. Generate them with:
-        </p>
-        <pre className="w-full overflow-x-auto rounded-lg border border-line bg-bone p-3 font-mono text-[12.5px] text-ink">
-          bash pipeline/run_all.sh
-        </pre>
+        <div className="flex flex-wrap gap-2"><span className="chip">Simulated scene</span><span className="chip">browser fallback</span></div>
+        <p className="text-[14px] text-ash">The landing page demonstrates the agent loop immediately, even before generated video and JSON are published.</p>
+        <div className="grid w-full gap-4 md:grid-cols-[1fr_1.2fr]"><div className="rounded-lg border border-line bg-ink p-4 text-paper"><div className="mb-3 font-mono text-[11px] text-paper/60">WORKER_REPLAY · synthetic</div><div className="relative h-32 rounded bg-[#3d464c]"><motion.div className="absolute h-10 w-16 rounded-full bg-black/70" animate={{left:["12%","55%","72%"],top:["65%","35%","65%"]}} transition={{duration:3,repeat:Infinity}}/><div className="absolute bottom-2 left-2 rounded bg-fail px-2 py-1 font-mono text-[11px]">FAIL · valve region</div></div></div><div className="rounded-lg border border-line bg-bone p-4 font-mono text-[12px]"><div className="mb-2 text-ash">agent trace · simulated</div>{["verify_step s1 PASS","next_step s2","verify_step s3 FAIL @valve","flag_error @valve","verify_step s3 PASS","next_step s4"].map((x,i)=><div key={x+i} className={`border-b border-line py-1 ${x.includes("FAIL")?"text-fail":x.includes("PASS")?"text-pass":"text-ink"}`}>{String(i).padStart(2,"0")} · {x}</div>)}</div></div>
+        <p className="text-[12px] text-ash">Generated <span className="font-mono">session.json</span> and annotated media replace this replay after <span className="font-mono">run_all.sh</span>.</p>
       </div>
     </Panel>
   );
